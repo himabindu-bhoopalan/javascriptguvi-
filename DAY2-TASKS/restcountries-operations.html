@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>How to loop through all properties in a JSON object.</p>
+
+<p id="demo"></p>
+
+<script>
+var request = new XMLHttpRequest(),
+	method='GET',
+	url='https://restcountries.eu/rest/v2/all';
+	request.open(method,url, true);
+	request.onload = function() {
+  // Begin accessing JSON data here
+	var data = JSON.parse(this.response)
+	console.log(data);
+	var a=data;
+	
+
+
+	
+	const FilteredItems=a.filter((a)=>{  //first one
+	return a.capital.length <=5;
+	})
+	//document.write(count+" "+a[i].name+'  -  '+a[i].capital);
+	//document.write("<br>");
+	for(i in FilteredItems)
+		console.log(i.capital);
+	
+	console.log(FilteredItems); //42 countries
+	
+	const itemNames=a.map((a)=>{
+	return a.name.toUpperCase();
+	})
+	
+	console.log(itemNames);
+	
+	const FoundItem =a.find((a)=>{
+	
+	return a.name==='India';
+	})
+	
+	console.log(FoundItem);
+	
+	array=[10,11,12,13];
+	
+	const arrayTotal =array.reduce((a,b)=>{
+	return a+b;
+	
+	},0)
+	
+	console.log(arrayTotal);
+	
+	//const sumEvens = array => array.filter(e => !(e % 2)).reduce((a, b) =>a + b);
+	
+	//console.log(sumEvens)
+	
+	const oddarrayTotal=array.reduce((sum,item)=>{  
+	if(item%2!=0){//first one
+		return sum+item;}
+	else{
+		return sum;}
+	},0)
+
+	//const oddarrayTotal =array.reduce((a,b)=>{
+	//return a+b;
+	
+	//},0)
+	
+	console.log(oddarrayTotal);
+	
+	//slice function
+	let fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+	let citrus = fruits.slice(1, 3);
+	console.log(citrus);
+	
+	//splice function :changes the original object 
+	//var fruits = ["Banana", "Orange", "Apple", "Mango"];
+	fruits.splice(2, 1, "Lemon", "Kiwi");
+	console.log(fruits);
+	
+	
+}
+request.send()
+
+</script>
+
+</body>
+</html>
