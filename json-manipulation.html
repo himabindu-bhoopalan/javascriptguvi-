@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+<p>How to loop through all properties in a JSON object and simple manipulation.</p>
+
+<p id="demo"></p>
+
+<script>
+var myObj, x;
+var arr=[];
+var arr1=[];
+myObj = {"name":"Rajnikanth", "age":33, "hasPets":false};
+let myObj2 = {"name":"ISRO", "age":35, "role":"Scientist"};
+let array1 = ["GUVI","I","am","a geek"];
+
+function printAllValues(obj) {
+for (x in obj) {
+  document.write(obj[x],"<br>");
+  arr.push(obj[x]);
+  
+}
+console.log(arr);
+}
+
+function printAllKeys(obj1) {
+for (y in obj1) {
+  document.write(y,"<br>");
+  arr1.push(y);
+  
+}
+console.log(arr1);
+ }
+ 
+ function convertObjectToList(obj2) {
+ //{name: “ISRO”, age: 35, role: “Scientist”};
+ //o/p-[[“name”, “ISRO”], [“age”, 35], [“role”, “Scientist”]]
+ arr1=[]
+	//console.log(Object.entries(obj2)); --->using the inbuilt function
+	for(i in obj2.length){
+		arr1.push([i],obj2[i]);
+	}
+	console.log(arr1)
+}
+
+
+function transformFirstAndLast(arr) {
+ 
+ let obj={};
+ let first=arr[0];
+ let last =arr[arr.length-1];
+ 
+ obj[first]=last;
+ console.log(obj);
+ 
+ 
+ 
+ return myObj;
+}
+let array2 = [["make","Ford"], ["model","Mustang"], ["year",1964]];
+
+function fromListToObject(arr2) {
+	let obj={};
+
+	for(i in arr2){
+		let first=arr2[i][0];
+		let second=arr2[i][1];
+		obj[first]=second;
+	}
+	console.log(obj);
+	
+}
+
+var array3= [[["firstname","Vasanth"],["lastname","Raja"], ["age",24], ["role","JSWizard"]],
+			[["firstname","Sri"],["lastname","Devi"], ["age",21], ["role","Coder"]] ];
+function transformEmployeeData(arr) {
+	 var tranformEmployeeList = [];
+	 let obj={};
+	for(i in arr){
+		
+		for(j in i){
+
+			console.log(arr[j]);
+			console.log(JSON.stringify(Object.assign({},arr)));
+		
+		}
+		}
+		
+ 
+ 
+ return tranformEmployeeList;
+}
+ 
+printAllValues(myObj);
+printAllKeys(myObj);
+convertObjectToList(myObj2);
+a=transformFirstAndLast(array1);
+console.log(a);
+b=fromListToObject(array2);
+console.log(b);
+c=transformEmployeeData(array3);
+console.log(c);
+
+</script>
+
+</body>
+</html>
