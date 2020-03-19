@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="txt">10</div>
+<script>
+//nestedcallback    
+var a =document.getElementById("txt")
+setTimeout(function(){
+        a.innerHTML='9'
+    setTimeout(function(){
+            a.innerHTML='8'
+        setTimeout(function(){
+                a.innerHTML='7'
+                setTimeout(function(){
+                    a.innerHTML='6'
+                        setTimeout(function(){
+                            a.innerHTML='5'
+                            setTimeout(function(){
+                                a.innerHTML='4'
+                                setTimeout(function(){
+                                    a.innerHTML='3'
+                                    setTimeout(function(){
+                                        a.innerHTML='2'
+                                        setTimeout(function(){
+                                            a.innerHTML='1'
+                                                setTimeout(function(){
+                                                    a.innerHTML='0'
+                                                    setTimeout(function(){
+                                                        a.innerHTML='Happy new year!'
+    
+                                                    },1000)         
+                                                },1000)        
+                                        },1000)        
+                                    },1000)        
+                                },1000)        
+                            },1000)        
+                        },1000)        
+                },1000)    
+        },1000)
+    },1000)
+},1000)
+
+
+</script>
+
+</body>
+</html>         
+</script>
+
+</body>
+</html>         
