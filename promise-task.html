@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<script>
+var fetch1=fetch("https://restcountries.eu/rest/v2/all");
+
+fetch1.then(function(data1){
+    return data1.json();
+}).then(function(data2){
+    console.log(data2);
+    
+    var count=1;
+    data2.forEach(element => {
+        
+    var city_name=element.capital;
+    var country_code=element.alpha2Code;
+
+      
+
+    var url="http://api.openweathermap.org/data/2.5/weather?q="+city_name+","+country_code+"&appid=50affdeb29a0764727a66e08697cebda";
+    var fetch2=fetch(url);
+
+    fetch2.then(function(data3){
+
+    return data3.json();
+
+    }).then(function(data4){
+        //console.log(data4);
+        document.write("<br><br>");
+         
+        document.write(element.name); 
+        document.write("<br>");
+
+        //load text before the image so that afganisthan will get displayed
+
+        var x = document.createElement("IMG");
+        x.id=count+"image";
+        x.style.width="50px";
+        document.body.append(x);
+        document.getElementById(x.id).src=element.flag;//(url of the flag)
+        
+        document.write("<br>");
+        document.write("Weather Details in "+element.name +" are as follows<br>"); 
+        document.write("<br>");
+        document.write(count+". City Name: "+data4.name+" Temperature: "+data4.main.temp);
+        
+        count++;
+
+        }).catch(function(err){
+  
+        console.log(err); 
+       
+
+        })//--catch
+        
+    })//--forEach loop
+    
+})//fetch1
+
+ 
+
+</script>
+ 
+
+
+</body>
+</html>         
