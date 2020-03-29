@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+
+async function getCountry(){
+    let  country= await fetch("https://restcountries.eu/rest/v2/all");
+    return await country.json();
+    
+}
+async function getTemperature(id,cap){
+    try{
+
+    //console.log(id,cap);
+    var url="http://api.openweathermap.org/data/2.5/weather?q="+ cap + "&appid=60e6eb111290694f4a3ffdb5d17f31d7"
+    var fetch_weather=await fetch(url);
+   
+    var weather = await fetch_weather.json();
+    //console.log(weather);
+    //console.log(document.getElementById(id));
+    
+    document.getElementById(id).textContent=weather.main.temp;
+    var t=document.createElement('BR');
+    document.getElementById(id).append(t);
+       
+    }
+    catch(err){
+        console.log(err);
+    } 
+    
+}
+
+async function myAsyncfunction(){
+    var countries =await getCountry()
+    var count=1;
+    countries.forEach(element => {
+    document.write(element.name);    
+    var div= document.createElement("DIV");
+    div.id="div"+count;
+    document.body.append(div);  
+
+    var txt= document.createElement("TEXT");
+    txt.id=count;
+    div.append(txt);  
+
+    document.getElementById(txt.id).textContent='CLICK THE FLAG FOR WEATHER!'
+    var t1=document.createElement('BR');
+    txt.append(t1);     
+    var x = document.createElement("IMG");
+    x.id="image"+count;
+    x.style.width="50px";
+    x.onclick=function(){
+    //alert('clicked');
+    //console.log(element.capital);
+    getTemperature(txt.id,element.capital)
+    }
+    div.append(x);
+    
+    document.write("<br><br>");    
+    
+    
+   
+    document.getElementById(x.id).src=element.flag;//(url of the flag) 
+    
+    count++;
+       
+    
+
+    });
+    
+
+    
+
+}
+
+
+myAsyncfunction();
+
+</script>
+</body>
+</html>         
