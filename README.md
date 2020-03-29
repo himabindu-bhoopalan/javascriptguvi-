@@ -1,2 +1,2 @@
-# javascriptguvi-
+# javascriptguvi
 javascript code snippets
