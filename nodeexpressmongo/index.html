@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form onsubmit="sendData();return false">
+        <!-- return false--this is typically used to cancel the form
+             submission if it does not meet criteria.-->
+        <label for="name">First name:</label><br>
+        <input type="text" id="name" name="name" placeholder='Firstname'><br>
+        <label for="email">Email-ID:</label><br>
+        <!-- name-attribute??why do we use it?-->
+        <input type="email" id="email" name="email" placeholder='xyz@domainname.com'><br><br>
+        <input type="submit" value="insert" onclick="sendData();return false;">
+        <input type="submit" value="display" onclick="getData();return false;">
+        <input type="submit" value="update" onclick="updateData();return false;">
+        <input type="submit" value="delete" onclick="deleteData();return false;">
+      </form>     
+<script>
+    function getData(){
+    fetch("http://localhost:3040").then(function(data){
+        //console.log(data);
+        return data.json();
+    }).then(function(userarr){
+        console.log(userarr);
+
+    }).catch(function(err){
+        console.log(err);
+    })
+  }
+
+function sendData(){
+  var data={
+
+        name:document.getElementById("name").value,
+        email:document.getElementById("email").value
+
+  };
+
+  fetch('http://localhost:3040/users',{
+    method:"POST",
+    headers:{
+      Accept:"application/json",
+      "content-type":"application/json"},
+      body:JSON.stringify(data)
+      })
+      .then(function(data){
+        return data.json();
+      }).then(function(data1){
+        console.log(data1);
+      } ).catch(function(err){
+          console.log(err);
+      })
+}
+
+function updateData(){
+  var data={
+      name:document.getElementById("name").value,
+      email:document.getElementById("email").value
+    };
+    fetch('http://localhost:3040/users',{
+    method:"PUT",
+    headers:{
+      Accept:"application/json",
+      "content-type":"application/json"},
+      body:JSON.stringify(data)
+      })
+      .then(function(data){
+        return data.json();
+      }).then(function(data2){
+        console.log(data2);
+      }).catch(function(err){
+          console.log(err);
+      })
+  }
+
+function deleteData(){
+  var data={
+      name:document.getElementById("name").value,
+      email:document.getElementById("email").value
+    };
+    fetch('http://localhost:3040/users',{
+    method:"DELETE",
+    headers:{
+      Accept:"application/json",
+      "content-type":"application/json"},
+      body:JSON.stringify(data)
+      })
+      .then(function(data){
+        return data.json();
+      }).then(function(data1){
+        console.log(data1);
+      }).catch(function(err){
+          console.log(err);
+      })
+  }
+
+
+
+</script>
+</body>
+</html>           
