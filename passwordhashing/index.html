@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <form>
+        <!-- return false--this is typically used to cancel the form
+             submission if it does not meet criteria.-->
+        <label for="email">Email-ID:</label><br>
+        <input type="text" id="email" name="email" placeholder='xyz@domainname.com'><br>
+        <label for="password">Passsword:</label><br>
+        <!-- name-attribute??why do we use it?-->
+        <input type="password" id="password" name="password" placeholder='password'><br><br>
+        <input type="submit" value="Signup" onclick="updateData();return false;">
+        <input type="submit" value="Login" onclick="login();return false;">
+        
+    </form>     
+<script>
+function login(){
+    var data={
+
+    email:document.getElementById("email").value,
+    password:document.getElementById("password").value
+
+    };
+
+    fetch('http://localhost:3040/login',{
+    method:"POST",
+    headers:{
+    Accept:"application/json",
+    "content-type":"application/json"},
+    body:JSON.stringify(data)
+    })
+    .then(function(data){
+    return data.json();
+  }).then(function(data1){
+    console.log(data1);
+    }).catch(function(err){
+      console.log(err);
+  })
+}
+
+function updateData(){
+  var data={
+
+    email:document.getElementById("email").value,
+    password:document.getElementById("password").value
+
+  };
+
+  fetch('http://localhost:3040/signup',{
+    method:"POST",
+    headers:{
+      Accept:"application/json",
+      "content-type":"application/json"},
+      body:JSON.stringify(data)
+      })
+      .then(function(data){
+        return data.json();
+      }).then(function(data1){
+        console.log(data1);
+      } ).catch(function(err){
+          console.log(err);
+      })
+}
+</script>
+</body>
+</html>           
