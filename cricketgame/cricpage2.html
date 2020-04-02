@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<script>
+		function display() {
+			var t1 = localStorage.getItem('Team1score');
+			var t2 = localStorage.getItem('Team2score');
+			var w1 = localStorage.getItem('Team1wickets');
+			var w2 = localStorage.getItem('Team1wickets');
+			document.getElementById('t1score').innerText = t1
+			document.getElementById('t2score').innerText = t2
+			document.getElementById('w1').innerText = w1
+			document.getElementById('w2').innerText = w2
+			t3=Number(t1) - Number(t2)
+			if (t1 - t2 > 0) {
+				var str1="Team1 won by " +t3+ "runs!";
+				document.getElementById('result1').innerText = str1;
+			}
+			else if (t1 - t2 < 0) {
+				var str2="Team2 won by " +-(t3)+ "runs!"
+				document.getElementById('result1').innerText = str2;
+			}
+			else {
+				if (t1 - t2 == 0) {
+					var str3="It is a draw"
+					document.getElementById('result1').innerText =str3;
+				}
+			}
+		}
+		
+		
+			
+	</script>
+	<h2 align="center">SCOREBOARD</h2>
+	<table id='teams1' align="center">
+		<tr>
+			<td><label id='team1'>TEAM1:&nbsp&nbsp&nbsp</label><span>
+					<label id='t1score'></label></td></span>
+
+			<td><label id='team2'>TEAM2:&nbsp&nbsp&nbsp</label><span>
+					<label id='t2score'></label></td></span>
+		</tr>
+		<tr>
+			<td><label id='Wickets1'>Wickets:&nbsp&nbsp&nbsp&nbsp</label>
+				<label id='w1'></label></td>
+			<td><label id='Wickets1'>Wickets:&nbsp&nbsp&nbsp&nbsp</label>
+				<label id='w2'></label></td>
+
+		</tr>
+		<tr >
+		<td colspan=2><div align="center"><label onclick='display()'>Click for result</label></div></td>
+		</tr>
+		
+
+	</table>
+	<div align="center">
+		<td><label id='result1'></label></td>
+	</div>
+</body>
+</html>
